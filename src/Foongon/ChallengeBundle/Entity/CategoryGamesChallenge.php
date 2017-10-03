@@ -3,6 +3,7 @@
 namespace Foongon\ChallengeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * CategoryGamesChallenge
@@ -37,21 +38,21 @@ class CategoryGamesChallenge
      
          /**
           * @var datetime $created
-          *
+          * @Gedmo\Timestampable(on="create")
           * @ORM\Column(type="datetime")
           */
          private $created;
      
          /**
           * @var datetime $updated
-          *
+          * @Gedmo\Timestampable(on="update")
           * @ORM\Column(type="datetime")
           */
          private $updated;
      
          /**
           * @var string $createdFromIp
-          *
+          * @Gedmo\IpTraceable(on="update")
           * @ORM\Column(type="string", length=45, nullable=true)
           */
          private $createdFromIp;
