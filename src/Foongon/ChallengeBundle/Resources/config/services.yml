@@ -1,0 +1,4 @@
+services:
+#    foongon_challenge.example:
+#        class: Foongon\ChallengeBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
