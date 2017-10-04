@@ -1,0 +1,20 @@
+{% extends '@EasyAdmin/Default/layout.html.twig' %}
+
+
+{% block page_title %}
+    {{ parent() }} - Tableaux de Bord
+{% endblock %}
+
+{% block content_header %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {% trans %}Tableaux de Bord {% endtrans %}
+            <small>Vue Globale</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> {% trans %}Tableaux de Board{% endtrans %}</a></li>
+            <li class="active">  {% trans %}Gains{% endtrans %}</li>
+        </ol>
+    </section>
+{% endblock %}

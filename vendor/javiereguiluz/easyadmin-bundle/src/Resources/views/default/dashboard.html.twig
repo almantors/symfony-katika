@@ -1,0 +1,134 @@
+{% extends "FoongonUserBundle::layout-user-connect.html.twig" %}
+
+
+{% block title %}
+    {{ parent() }} - Tableaux de Bord
+{% endblock %}
+
+{% block content_header %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {% trans %}Tableaux de Board {% endtrans %}
+            <small>Vue Globale</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> {% trans %}Tableaux de Board{% endtrans %}</a></li>
+            <li class="active">  {% trans %}Gains{% endtrans %}</li>
+        </ol>
+    </section>
+{% endblock %}
+
+{% block content_header_contenu_page %}
+    <!-- Main row -->
+    <div class="row">
+                        <!-- Left col -->
+                        <div class="col-md-12">
+                            <!-- MAP & BOX PANE -->
+                            <!-- /.row -->
+
+                            <!-- TABLE: LATEST ORDERS -->
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">{% trans %}Historique des Gains{% endtrans %}</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="table-responsive">
+                                        <table class="table no-margin">
+                                            <thead >
+                                                <th style="text-align: center">#</th>
+                                                <th style="text-align: center">Id Transaction</th>
+                                                <th style="text-align: center">Montant</th>
+                                                <th style="text-align: center">Status</th>
+                                                <th style="text-align: center">Motif</th>
+                                                <th style="text-align: center">Solde Final</th>
+                                                <th style="text-align: center">Date</th>
+
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                                {% set i=0 %}
+                                                {% for entity in entities %}
+                                                    <tr style="text-align: center">
+                                                        {% set i=i+1 %}
+                                                        <td>{{ i }}</td>
+                                                        <td><a href="#">{{ entity.idOperation }}</a></td>
+                                                        <td>{{ entity.amount }}$</td>
+                                                        <td>
+
+                                                            {%   if entity.status == 'DELIVERED' %}
+                                                                <span class="label label-success">Shipped</span>
+                                                            {%  endif %}
+
+                                                            {%   if entity.status == 'PENDING' %}
+                                                                <span class="label label-warning">Pending</span>
+
+                                                            {%  endif %}
+
+                                                            {%   if entity.status == 'PROCESSING' %}
+                                                                <span class="label label-info">Processing</span>
+                                                            {%  endif %}
+
+                                                            {%   if entity.status == 'CANCEL' %}
+                                                                <span class="label label-danger">Delivered</span>
+                                                            {%  endif %}
+
+                                                        </td>
+                                                        <td>
+                                                            {%   if entity.motif == 'PAYMENT_EARNINGS' %}
+                                                                {% trans %} Paiement Gains {% endtrans %}
+                                                            {%  endif %}
+
+                                                            {%   if entity.motif == 'EARNING_CHALLENGE' %}
+                                                                {% trans %} Gains Challenges {% endtrans %}
+                                                            {%  endif %}
+
+                                                        </td>
+                                                        <td>{{ entity.amount }}$</td>
+                                                        <td>{{entity.updated|date('d/m/Y G\\h:i')}}</td>
+
+                                                    </tr>
+
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="7">
+                                                            <div class="alert alert-danger" style="font-weight: bold; font-style: italic; width:100%;text-align: center;font-weight:bold;font-size:1.2em; text-align: center">
+                                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                                {% trans %}Pas  d'historique à  afficher{% endtrans %}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="pull-left" style="margin-top: 20px">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat">Créer un Challenge</a>
+                                </div>
+                                <div class="pull-right">
+                                   {#<a href="javascript:void(0)" class="btn btn-sm btn-default style="text-align:center"> #}
+                                        {{ pagerfanta(pagerfanta, 'twitter_bootstrap3', { 'proximity': 2}) }}
+                                    </div>
+                                </div>
+                                <!-- /.box-footer -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- /.col -->
+                    </div>
+    <!-- /.row -->
+
+{% endblock %}
