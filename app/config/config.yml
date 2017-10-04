@@ -71,6 +71,7 @@ easy_admin:
     # brand_color: 'red'
     entities:
         - Foongon\ChallengeBundle\Entity\CategoryGamesChallenge
+        - Foongon\ChallengeBundle\Entity\GamesChallenge
 
 # StofDoctrine Configuration
 stof_doctrine_extensions:
